@@ -16,14 +16,14 @@ function userConnection( socketReq ) {
       //console.log(buffer);
     var parsedBuffer = buffer.split( ' ' );
     var reqURI = parsedBuffer[1];
-      console.log(reqURI);
+      //console.log(reqURI);
     if( reqURI === '/' ){
       reqURI = '/index.html';
     }
     var contentTypeFinder = reqURI.split( '.' );
       //console.log(typeof(contentTypeFinder), contentTypeFinder);
     var contentType = contentTypeFinder[1];
-      console.log( reqURI);
+      //console.log( reqURI);
       //console.log( contentType );
       //reqURI = '/helium.html';
     return fs.readFile( './html' + reqURI, function ( err, data ) {

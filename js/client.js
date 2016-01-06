@@ -1,12 +1,13 @@
 var net = require( 'net' );
 var path = require( 'path' );
-var host = process.argv[2] || 'localhost';
-var port = 8080;
 
-var client = net.connect(port, host,
+var HOST = process.argv[2] || 'localhost';
+var PORT = 80;
+
+var client = net.connect(PORT, HOST,
     function() { //'connect' listener
   console.log('connected to server!');
-  client.write('GET /helium.html HTTP/1.1\n\n');
+  client.write('GET /index.html HTTP/1.1\n\n');
 });
 client.on('data', function(data) {
   console.log(data.toString());
