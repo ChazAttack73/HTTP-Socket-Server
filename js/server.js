@@ -1,5 +1,8 @@
 var net = require( 'net' );
 var fs = require( 'fs' );
+var moment = require( 'moment-timezone' );
+var reqDate = new Date();
+//console.log( reqDate );
 
 var server = net.createServer( userConnection );
 
@@ -27,18 +30,20 @@ function userConnection( socketReq ) {
       if (err) {
         return fs.readFile( 'html/404.html', function ( err, data ) {
           if( err ) console.log( err );
-          socketReq.write( 'HTTP/1.1 404 NOT FOUND\n' );
+          socketReq.write( 'HTTP/1.1 404 TRY AGAIN SUCKAH!\n' );
           socketReq.write( 'Server : Chaz-Attack\n' );
           socketReq.write( 'Content-Type: text/html; charset=utf-8\n');
+          socketReq.write( 'Date :' + reqDate );
           socketReq.write( '\n\n' );
           socketReq.write( ' ' );
           socketReq.write( data );
           return socketReq.end();
         });
       }
-        socketReq.write( 'HTTP/1.1 200 OK\n' );
+        socketReq.write( 'HTTP/1.1 200 OK MUTHA SNUKA!\n' );
         socketReq.write( 'Server : Chaz-Attack\n' );
         socketReq.write( 'Content-Type: text/' + contentType + '; charset=utf-8\n');
+        socketReq.write( 'Date :' + reqDate );
         socketReq.write( '\n\n');
         socketReq.write( ' ');
         socketReq.write( data );
