@@ -7,7 +7,7 @@ var reqDate = new Date();
 var server = net.createServer( userConnection );
 
 function userConnection( socketReq ) {
-  console.log( 'I feel a little tickle!\n' );
+  //console.log( 'I feel a little tickle!\n' );
   socketReq.setEncoding( 'utf-8' );
 
   socketReq.on( 'data', function( buffer ) {
@@ -16,18 +16,19 @@ function userConnection( socketReq ) {
       //console.log(buffer);
     var parsedBuffer = buffer.split( ' ' );
     var reqURI = parsedBuffer[1];
-      //console.log(reqURI);
+      console.log(reqURI);
     if( reqURI === '/' ){
       reqURI = '/index.html';
     }
     var contentTypeFinder = reqURI.split( '.' );
       //console.log(typeof(contentTypeFinder), contentTypeFinder);
     var contentType = contentTypeFinder[1];
-
+      console.log( reqURI);
       //console.log( contentType );
-
+      //reqURI = '/helium.html';
     return fs.readFile( './html' + reqURI, function ( err, data ) {
       if (err) {
+        console.log(err);
         return fs.readFile( 'html/404.html', function ( err, data ) {
           if( err ) console.log( err );
           socketReq.write( 'HTTP/1.1 404 TRY AGAIN SUCKAH!\n' );
