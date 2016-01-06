@@ -7,7 +7,7 @@ var reqDate = new Date();
 var server = net.createServer( userConnection );
 
 function userConnection( socketReq ) {
-  //console.log( 'I feel a little tickle!\n' );
+  console.log( 'I feel a little tickle!\n' );
   socketReq.setEncoding( 'utf-8' );
 
   socketReq.on( 'data', function( buffer ) {
